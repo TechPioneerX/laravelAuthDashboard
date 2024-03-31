@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('scripts')
 </head>
 <body>
     <div id="app">
@@ -40,7 +41,7 @@
                         @else
                             @if(auth()->user()->hasRole('Admin'))
                                 <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
-                                <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
+<!--                                <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>-->
                             @else
                             @endif
                             <li class="nav-item dropdown">

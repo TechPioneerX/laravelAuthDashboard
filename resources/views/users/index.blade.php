@@ -1,5 +1,17 @@
 @extends('layouts.app')
 
+@section('scripts')
+    @parent <!-- Keep any existing scripts and add new ones -->
+    <script>
+        function confirmBlock() {
+            return confirm('Are you sure you want to block this user?');
+        }
+
+        function confirmUnblock() {
+            return confirm('Are you sure you want to unblock this user?');
+        }
+    </script>
+@endsection
 
 @section('content')
 <div class="row">
@@ -37,16 +49,29 @@
     <td>
       @if(!empty($user->getRoleNames()))
         @foreach($user->getRoleNames() as $v)
-           <label class="badge badge-success">{{ $v }}</label>
+            @if($user->hasRole('Admin'))
+                <label class="badge badge-warning">{{ $v }}</label>
+            @else
+                <label class="badge badge-success">{{ $v }}</label>
+            @endif
         @endforeach
       @endif
     </td>
     <td>
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-       <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-        {!! Form::close() !!}
+      <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+      <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+      @if($user->hasRole('Admin'))
+      @else
+        @if($user->deleted_at == null )
+            {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline', 'class' => 'block-form', 'onsubmit' => 'return confirmBlock()']) !!}
+            {!! Form::submit('Block', ['class' => 'btn btn-danger']) !!}
+            {!! Form::close() !!}
+        @else
+            {!! Form::open(['method' => 'PUT', 'route' => ['users.unblock', $user->id], 'style' => 'display:inline', 'class' => 'unblock-form', 'onsubmit' => 'return confirmUnblock()']) !!}
+            {!! Form::submit('Unblock', ['class' => 'btn btn-success']) !!}
+            {!! Form::close() !!}
+        @endif
+      @endif
     </td>
   </tr>
  @endforeach

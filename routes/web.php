@@ -24,5 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'role:Admin']], function() {
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
+    Route::put('/users/{id}/unblock', 'UserController@unblock')->name('users.unblock');
 });
 Route::middleware('register')->get('/register', function () {})->name('register');
