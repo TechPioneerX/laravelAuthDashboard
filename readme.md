@@ -1,12 +1,14 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-<p align="center">Empty Laravel Project with ide-helper Plugin</p>
+## user roles and permissions (acl) using spatie tutorial laravel 5.8
 
-## Usage
-
-Clone project and execute following tasks:
+You can follow step by step tutorial for user roles and permissions (acl) using spatie tutorial laravel 5.8 Here: https://itsolutionstuff.com/post/laravel-58-user-roles-and-permissions-tutorialexample.html
 
 ```
 composer update
-mv .env.example .env
-php artisan key:generate
+php artisan migrate
+php artisan db:seed
 ```
+
+```
+php artisan migrate:fresh
+```
+/register route is blocked in app/Http/Middleware/BlockRoute.php, app/Http/Kernel.php and web.php

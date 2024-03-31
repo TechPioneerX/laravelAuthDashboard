@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Tweaks</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -48,10 +48,6 @@
                 font-size: 84px;
             }
 
-            .subtitle {
-                font-size: 30px;
-            }
-
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -62,20 +58,8 @@
                 text-transform: uppercase;
             }
 
-            .m-b-lg {
-                margin-bottom: 60px;
-            }
-
             .m-b-md {
                 margin-bottom: 30px;
-            }
-
-            .m-b-sm {
-                margin-bottom: 15px;
-            }
-
-            .bold {
-                font-weight: bold;
             }
         </style>
     </head>
@@ -87,30 +71,28 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
+                        {{--@if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        @endif--}}
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-sm">
-                    Laravel 5.8
-                </div>
+            <div class="">
+                <div class="m-b-md">
+                    <pre>
 
-                <div class="m-b-lg subtitle">Empty Laravel Project with ide-helper included</div>
+_________          _______  _______  _        _______
+\__   __/|\     /|(  ____ \(  ___  )| \    /\(  ____ \
+   ) (   | )   ( || (    \/| (   ) ||  \  / /| (    \/
+   | |   | | _ | || (__    | (___) ||  (_/ / | (_____
+   | |   | |( )| ||  __)   |  ___  ||   _ (  (_____  )
+   | |   | || || || (      | (   ) ||  ( \ \       ) |
+   | |   | () () || (____/\| )   ( ||  /  \ \/\____) |
+   )_(   (_______)(_______/|/     \||_/    \/\_______)
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                    <a href="https://github.com/SchuBu/new-laravel-project">GitHub Package</a>
+
+                    </pre>
                 </div>
             </div>
         </div>

@@ -10,7 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth', 'role:Admin']], function() {
+    Route::resource('roles', 'RoleController');
+    Route::resource('users', 'UserController');
+});
+Route::middleware('register')->get('/register', function () {})->name('register');
