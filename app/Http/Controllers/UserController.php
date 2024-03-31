@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Utils;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -61,11 +62,13 @@ class UserController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-
-
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
 
+        $apiKey = Utils::generateJWT($user->email, $request->input('roles'), now());
+        $user->apiKey = $apiKey;
+        $user->save();
+
+        $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
@@ -128,11 +131,13 @@ class UserController extends Controller
 
         $user = User::find($id);
         $user->update($input);
+
+        $apiKey = Utils::generateJWT($user->email, $request->input('roles'), now());
+        $user->apiKey = $apiKey;
+        $user->save();
+
         DB::table('model_has_roles')->where('model_id',$id)->delete();
-
-
         $user->assignRole($request->input('roles'));
-
 
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');

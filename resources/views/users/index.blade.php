@@ -20,7 +20,7 @@
             <h2>Users Management</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+            <a class="btn btn-success float-right" href="{{ route('users.create') }}"> Create New User</a>
         </div>
     </div>
 </div>
@@ -58,8 +58,10 @@
       @endif
     </td>
     <td>
-      <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-      <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+        @if( $user->deleted_at == null )
+          <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+          <a class="btn btn-primary " href="{{ route('users.edit',$user->id) }}">Edit</a>
+        @endif
       @if($user->hasRole('Admin'))
       @else
         @if($user->deleted_at == null )
@@ -68,7 +70,7 @@
             {!! Form::close() !!}
         @else
             {!! Form::open(['method' => 'PUT', 'route' => ['users.unblock', $user->id], 'style' => 'display:inline', 'class' => 'unblock-form', 'onsubmit' => 'return confirmUnblock()']) !!}
-            {!! Form::submit('Unblock', ['class' => 'btn btn-success']) !!}
+            {!! Form::submit('Unblock', ['class' => 'btn btn-default btn-outline-dark']) !!}
             {!! Form::close() !!}
         @endif
       @endif

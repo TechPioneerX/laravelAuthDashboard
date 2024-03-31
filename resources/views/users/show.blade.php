@@ -8,7 +8,7 @@
             <h2> Show User</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+            <a class="btn btn-primary float-right" href="{{ route('users.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -35,6 +35,14 @@
                     <label class="badge badge-success">{{ $v }}</label>
                 @endforeach
             @endif
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>API key:</strong>
+            <code>
+                {{ trim($user->apiKey) }}
+            </code>
         </div>
     </div>
 </div>
