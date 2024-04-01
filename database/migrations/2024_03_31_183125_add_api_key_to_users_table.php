@@ -14,7 +14,7 @@ class AddApiKeyToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('apiKey', 1024)->nullable()->unique();
+            $table->string('apiKey', 1024)->nullable();
         });
     }
 

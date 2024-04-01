@@ -64,9 +64,9 @@ class AuthController extends Controller
         return response()->json([
             'code' => 401,
             'success' => true,
-            'message' => 'Authentication result',
+            'message' => 'Unregistered email address.',
             'timestamp' => now()->toDateTimeString(),
             'body' => null,
-        ], 200);
+        ], 401);
     }
 }
